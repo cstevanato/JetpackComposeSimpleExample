@@ -21,6 +21,7 @@ import com.example.jetpackcompleexample.ColumnRowTextExample
 import com.example.jetpackcompleexample.SimpleListStateExample
 import com.example.jetpackcompleexample.SimpleStateExample
 import com.example.jetpackcompleexample.SimpleSumStateExample
+import com.example.jetpackcompleexample.crud.SimpleCrudExample
 import com.example.jetpackcompleexample.planet.PlanetMainExample
 import com.example.jetpackcompleexample.ui.theme.JetpackCompleExampleTheme
 
@@ -50,7 +51,8 @@ class MenuExample : ComponentActivity() {
             ActivityLocation("SimpleList", SimpleListStateExample::class.java),
             ActivityLocation("SimpleState", SimpleStateExample::class.java),
             ActivityLocation("SimpleSum", SimpleSumStateExample::class.java),
-            ActivityLocation("Planet", PlanetMainExample::class.java)
+            ActivityLocation("Planet", PlanetMainExample::class.java),
+            ActivityLocation("Crud", SimpleCrudExample::class.java)
         )
         Row(modifier = Modifier.fillMaxWidth()) {
 
