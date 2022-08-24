@@ -8,9 +8,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -18,13 +15,18 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcompleexample.PlanetDetails
+import com.example.jetpackcompleexample.crud.data.entities.City
+import com.example.jetpackcompleexample.crud.list.ListComposable
+import com.example.jetpackcompleexample.crud.register.RegisterActivity
+import com.example.jetpackcompleexample.crud.update.detailsComposable
+import com.example.jetpackcompleexample.planet.model.Planet
 import com.example.jetpackcompleexample.ui.theme.JetpackCompleExampleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,6 +50,18 @@ class SimpleCrudExample : ComponentActivity() {
                         composable(route = "showScreen") {
                             showScreen(navController)
                         }
+                        composable(route = "registerScreen") {
+                            RegisterActivity(navController = navController)
+                        }
+                        composable(route = "detailsScreen") {
+                            val city: City? =
+                                navController.previousBackStackEntry?.savedStateHandle?.get<City>(
+                                    "city"
+                                )
+                            city?.let {
+                                detailsComposable(navController = navController, city = it)
+                            }
+                        }
                     }
                 }
             }
@@ -59,21 +73,11 @@ class SimpleCrudExample : ComponentActivity() {
     fun showScreen(navController: NavController) {
         Scaffold(
             content = { innerPadding ->
-                LazyColumn(
+                ListComposable(
                     contentPadding = innerPadding,
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    val list = (0..75).map { it.toString() }
-                    items(count = list.size) {
-                        Text(
-                            text = list[it],
-                            style = MaterialTheme.typography.bodyLarge,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp)
-                        )
-                    }
-                }
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    navController = navController
+                )
             },
             floatingActionButton =
             {
@@ -85,7 +89,8 @@ class SimpleCrudExample : ComponentActivity() {
             },
             topBar = {
                 SmallTopAppBar(
-                    colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
+                    colors = TopAppBarDefaults
+                        .smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                     title = {
                         Text(
                             "Crud Examples",
