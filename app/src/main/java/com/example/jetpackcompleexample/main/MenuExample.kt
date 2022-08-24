@@ -23,6 +23,7 @@ import com.example.jetpackcompleexample.SimpleStateExample
 import com.example.jetpackcompleexample.SimpleSumStateExample
 import com.example.jetpackcompleexample.crud.SimpleCrudExample
 import com.example.jetpackcompleexample.planet.PlanetMainExample
+import com.example.jetpackcompleexample.retrofit.RetrofitActivity
 import com.example.jetpackcompleexample.ui.theme.JetpackCompleExampleTheme
 
 class MenuExample : ComponentActivity() {
@@ -52,7 +53,8 @@ class MenuExample : ComponentActivity() {
             ActivityLocation("SimpleState", SimpleStateExample::class.java),
             ActivityLocation("SimpleSum", SimpleSumStateExample::class.java),
             ActivityLocation("Planet", PlanetMainExample::class.java),
-            ActivityLocation("Crud", SimpleCrudExample::class.java)
+            ActivityLocation("Crud", SimpleCrudExample::class.java),
+            ActivityLocation("Retrofit", RetrofitActivity::class.java),
         )
         Row(modifier = Modifier.fillMaxWidth()) {
 
