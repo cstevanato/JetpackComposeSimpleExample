@@ -24,6 +24,7 @@ import com.example.jetpackcompleexample.SimpleSumStateExample
 import com.example.jetpackcompleexample.crud.SimpleCrudExample
 import com.example.jetpackcompleexample.planet.PlanetMainExample
 import com.example.jetpackcompleexample.retrofit.RetrofitActivity
+import com.example.jetpackcompleexample.tab.TabExample
 import com.example.jetpackcompleexample.ui.theme.JetpackCompleExampleTheme
 
 class MenuExample : ComponentActivity() {
@@ -48,6 +49,7 @@ class MenuExample : ComponentActivity() {
         val mContext = LocalContext.current
 
         val languages = listOf(
+            ActivityLocation("TabExample", TabExample::class.java),
             ActivityLocation("SimpleColumnsRow", ColumnRowTextExample::class.java),
             ActivityLocation("SimpleList", SimpleListStateExample::class.java),
             ActivityLocation("SimpleState", SimpleStateExample::class.java),
